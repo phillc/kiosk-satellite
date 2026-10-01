@@ -394,8 +394,8 @@ class DeviceCamera(
     }
 }
 
-/** The lens facings Camera2 reports, as "front"/"back" strings (external
- *  cameras ignored). Camera2 only, no CameraX: safe to call before — or
+/** The lens facings Camera2 reports, as "front"/"back"/"external" strings.
+ *  Camera2 only, no CameraX: safe to call before — or
  *  instead of — CameraX init, which is exactly what [KioskApplication]'s
  *  limiter and the settings pickers need. */
 internal fun cameraFacings(context: Context): List<String> = try {
@@ -415,6 +415,7 @@ internal fun cameraFacings(context: Context): List<String> = try {
         when (facing) {
             CameraCharacteristics.LENS_FACING_FRONT -> "front"
             CameraCharacteristics.LENS_FACING_BACK -> "back"
+            CameraCharacteristics.LENS_FACING_EXTERNAL -> "external"
             else -> null
         }
     }.distinct()
